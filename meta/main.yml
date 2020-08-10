@@ -8,7 +8,9 @@ galaxy_info:
     - openshift
     - kubernetes
     - k8s
-    - ansible-operator
+    - operator
     - postgresql
     - database
+  platforms:
+    - name: GenericLinux
 dependencies: []
