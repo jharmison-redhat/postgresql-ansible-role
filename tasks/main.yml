@@ -4,6 +4,9 @@
 - name: Set OpenShift Objects for Postgresql to {{ _postgresql_state }}
   k8s:
     state: "{{ _postgresql_state }}"
+    merge_type:
+    - strategic-merge
+    - merge
     definition: "{{ lookup('template', item ) | from_yaml }}"
   loop:
   - secret.yml.j2
