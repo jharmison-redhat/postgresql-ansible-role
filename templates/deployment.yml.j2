@@ -69,15 +69,19 @@ spec:
           privileged: false
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+{% if _postgresql_persistent|bool %}
         volumeMounts:
         - mountPath: /var/lib/pgsql/data
           name: postgresql-data
+{% endif %}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+{% if _postgresql_persistent|bool %}
       volumes:
       - name: postgresql-data
         persistentVolumeClaim:
           claimName: "{{ _postgresql_name }}-pvc"
+{% endif %}
