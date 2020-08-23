@@ -42,7 +42,7 @@ spec:
             secretKeyRef:
               key: database-name
               name: "{{ _postgresql_name }}"
-        - name: POSTGRES_DATABASE
+        - name: POSTGRES_DB
           valueFrom:
             secretKeyRef:
               key: database-name
