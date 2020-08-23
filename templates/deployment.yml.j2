@@ -52,8 +52,14 @@ spec:
         livenessProbe:
           exec:
             command:
-            - /usr/libexec/check-container
-            - --live
+            - /usr/bin/pg_isready
+            - -q
+            - -h
+            - '127.0.0.1'
+            - ${POSTGRESQL_USER+-U "$POSTGRESQL_USER"}
+            - ${POSTGRESQL_DATABASE+-d "$POSTGRESQL_DATABASE"}
+            - --timeout
+            - '0'
           failureThreshold: 3
           initialDelaySeconds: 120
           periodSeconds: 10
@@ -66,7 +72,14 @@ spec:
         readinessProbe:
           exec:
             command:
-            - /usr/libexec/check-container
+            - /usr/bin/pg_isready
+            - -q
+            - -h
+            - '127.0.0.1'
+            - ${POSTGRESQL_USER+-U "$POSTGRESQL_USER"}
+            - ${POSTGRESQL_DATABASE+-d "$POSTGRESQL_DATABASE"}
+            - --timeout
+            - '0'
           failureThreshold: 3
           initialDelaySeconds: 5
           periodSeconds: 10
