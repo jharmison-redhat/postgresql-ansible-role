@@ -22,12 +22,27 @@ spec:
             secretKeyRef:
               key: database-user
               name: "{{ _postgresql_name }}"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: "{{ _postgresql_name }}"
         - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
               key: database-password
               name: "{{ _postgresql_name }}"
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: "{{ _postgresql_name }}"
         - name: POSTGRESQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database-name
+              name: "{{ _postgresql_name }}"
+        - name: POSTGRES_DATABASE
           valueFrom:
             secretKeyRef:
               key: database-name
